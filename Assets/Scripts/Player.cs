@@ -8,7 +8,7 @@ public class Player : MonoBehaviour {
 
 	private float defalutSpeed;
 	private float stoppedX = 0;
-
+	private float moveDirection;
 	// Use this for initialization
 	void Start () {
 		defalutSpeed = speed;
@@ -19,26 +19,21 @@ public class Player : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		float x = Input.GetAxisRaw ("Horizontal");
-		if (stoppedX == x) {
-			return;
-		}
-		speed = defalutSpeed;
-		transform.Translate(new Vector2(speed * x  , 0));
+		Move (x);
 	}
 
 	void OnTriggerEnter2D (Collider2D c)
 	{
 		string layerName = LayerMask.LayerToName(c.gameObject.layer);
-//		Debug.Log ("Player layerName:"+layerName);
 		if (layerName == "SideWall") {
 			speed = 0;
-			stoppedX = Input.GetAxisRaw ("Horizontal");
+//			stoppedX = Input.GetAxisRaw ("Horizontal");
+			stoppedX = moveDirection;
 		}
 	}
 
 	void OnTriggerStay2D(Collider2D c)
 	{
-//		Debug.Log ("player OnTriggerStay2D");
 	}
 
 	void OnTriggerExit2D(Collider2D c)
@@ -53,5 +48,16 @@ public class Player : MonoBehaviour {
 	{
 		Vector3 ballPos = new Vector3 (transform.position.x, (transform.position.y + 1.0f), transform.position.z);
 		Instantiate (ball, ballPos, ball.transform.rotation);
+	}
+
+	// +1: right, -1:left
+	public void Move(float xDirection)
+	{
+		moveDirection = xDirection;
+		if (stoppedX == moveDirection) {
+			return;
+		}
+		speed = defalutSpeed;
+		transform.Translate(new Vector2(speed * xDirection  , 0));
 	}
 }
