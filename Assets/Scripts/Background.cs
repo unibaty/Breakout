@@ -13,9 +13,6 @@ public class Background : MonoBehaviour {
 	void Update () {
 		for(int i = 0; i < Input.touchCount; i++) {
 			Touch touch = Input.GetTouch(i);
-			Debug.Log("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<");
-			Debug.Log("touch.position.x:" + touch.position.x);
-			Debug.Log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
 			if(touch.phase == TouchPhase.Stationary || touch.phase == TouchPhase.Moved){
 				MovePlayer(touch.position.x);
 			}
@@ -32,8 +29,9 @@ public class Background : MonoBehaviour {
 			direction = 1; // right
 		}
 
-		GameObject player = GameObject.Find("player");
-		Player playerScript = (Player) player.GetComponent(typeof(Player));
-		playerScript.Move(direction);
+//		GameObject player = GameObject.Find("player");
+//		Player playerScript = (Player) player.GetComponent(typeof(Player));
+//		playerScript.Move(direction);
+		FindObjectOfType<Player> ().Move (direction);
 	}
 }

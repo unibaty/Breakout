@@ -29,12 +29,10 @@ public class Ball : MonoBehaviour {
 	
 	void OnTriggerStay2D(Collider2D c)
 	{
-		//		Debug.Log ("player OnTriggerStay2D");
 	}
 	
 	void OnTriggerExit2D(Collider2D c)
 	{
-//		Debug.Log ("player OnTriggerExit2D");
 		string layerName = LayerMask.LayerToName(c.gameObject.layer);
 		if (layerName == "GameArea") {
 			Destroy(gameObject);
@@ -44,9 +42,7 @@ public class Ball : MonoBehaviour {
 
 	private void CreateNewBall()
 	{
-		GameObject player = GameObject.Find("player");
-		Player playerScript = (Player) player.GetComponent(typeof(Player));
-		playerScript.CreateBall ();
+		FindObjectOfType<Player> ().CreateBall();
 	}
 
 	private int RandomPlusMinus()
