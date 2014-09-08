@@ -29,9 +29,6 @@ public class Background : MonoBehaviour {
 			direction = 1; // right
 		}
 
-//		GameObject player = GameObject.Find("player");
-//		Player playerScript = (Player) player.GetComponent(typeof(Player));
-//		playerScript.Move(direction);
 		FindObjectOfType<Player> ().Move (direction);
 	}
 }

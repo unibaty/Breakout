@@ -27,7 +27,6 @@ public class Player : MonoBehaviour {
 		string layerName = LayerMask.LayerToName(c.gameObject.layer);
 		if (layerName == "SideWall") {
 			speed = 0;
-//			stoppedX = Input.GetAxisRaw ("Horizontal");
 			stoppedX = moveDirection;
 		}
 	}
