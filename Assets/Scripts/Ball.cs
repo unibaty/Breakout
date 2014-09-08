@@ -47,8 +47,8 @@ public class Ball : MonoBehaviour {
 
 	private void DestroyBall()
 	{
-		Destroy(gameObject);
 		FindObjectOfType<Player> ().DecrementBallCount ();
+		Destroy(gameObject);
 	}
 
 	private int RandomPlusMinus()

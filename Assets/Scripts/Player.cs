@@ -55,10 +55,11 @@ public class Player : MonoBehaviour {
 
 	public void DecrementBallCount()
 	{
+		ballCount --;
 		if(ballCount <= 0){
+			FindObjectOfType<Manager> ().GameOver();
 			return;
 		}
-		ballCount --;
 	}
 
 	// +1: right, -1:left
