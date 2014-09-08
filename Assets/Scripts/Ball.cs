@@ -35,14 +35,20 @@ public class Ball : MonoBehaviour {
 	{
 		string layerName = LayerMask.LayerToName(c.gameObject.layer);
 		if (layerName == "GameArea") {
-			Destroy(gameObject);
-			CreateNewBall();
+			DestroyBall();
+//			CreateNewBall();
 		}
 	}
 
 	private void CreateNewBall()
 	{
 		FindObjectOfType<Player> ().CreateBall();
+	}
+
+	private void DestroyBall()
+	{
+		Destroy(gameObject);
+		FindObjectOfType<Player> ().DecrementBallCount ();
 	}
 
 	private int RandomPlusMinus()

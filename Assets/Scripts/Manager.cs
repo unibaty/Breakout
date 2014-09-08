@@ -9,14 +9,20 @@ public class Manager : MonoBehaviour {
 	void Start () {
 
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
+
+		if (Input.GetKeyDown(KeyCode.Return))
+		{
+			Debug.Log("Return!");
+			FindObjectOfType<Player> ().CreateBall();
+		}
 	}
 
 	void GameStart ()
 	{
-		 
+
 	}
 
 	void GameOver ()

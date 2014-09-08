@@ -9,11 +9,11 @@ public class Player : MonoBehaviour {
 	private float defalutSpeed;
 	private float stoppedX = 0;
 	private float moveDirection;
+	private int ballCount = 0;
 	// Use this for initialization
 	void Start () {
 		defalutSpeed = speed;
-
-		CreateBall ();
+//		CreateBall ();
 	}
 	
 	// Update is called once per frame
@@ -45,8 +45,20 @@ public class Player : MonoBehaviour {
 
 	public void CreateBall()
 	{
+		if(ballCount >= 1){
+			return;
+		}
 		Vector3 ballPos = new Vector3 (transform.position.x, (transform.position.y + 1.0f), transform.position.z);
 		Instantiate (ball, ballPos, ball.transform.rotation);
+		ballCount ++;
+	}
+
+	public void DecrementBallCount()
+	{
+		if(ballCount <= 0){
+			return;
+		}
+		ballCount --;
 	}
 
 	// +1: right, -1:left
