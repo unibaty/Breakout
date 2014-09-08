@@ -46,7 +46,7 @@ public class Player : MonoBehaviour {
 
 	public void CreateBall()
 	{
-		Vector3 ballPos = new Vector3 (transform.position.x, (transform.position.y + 1.0f), transform.position.z);
+		Vector2 ballPos = new Vector2 (transform.position.x, (transform.position.y + 1.0f));
 		Instantiate (ball, ballPos, ball.transform.rotation);
 	}
 
