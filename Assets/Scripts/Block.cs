@@ -18,6 +18,7 @@ public class Block : MonoBehaviour {
 		string layerName = LayerMask.LayerToName(c.gameObject.layer);
 		if (layerName == "Ball") {
 			Destroy(gameObject);
+			FindObjectOfType<Manager> ().ScoreUp();
 		}
 	}
 

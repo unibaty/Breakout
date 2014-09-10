@@ -6,6 +6,8 @@ public class Manager : MonoBehaviour {
 	private GameObject title;
 	enum Scenes {Playing, Title};
 	private int scene = (int)Scenes.Title;
+	private int score = 0;
+
 	// Use this for initialization
 	void Start () {
 		title = GameObject.Find ("Title");
@@ -46,5 +48,11 @@ public class Manager : MonoBehaviour {
 	void HideTitle()
 	{
 		title.SetActive(false);
+	}
+
+	public void ScoreUp()
+	{
+		score ++;
+		FindObjectOfType<Score> ().SetScore(score);
 	}
 }
