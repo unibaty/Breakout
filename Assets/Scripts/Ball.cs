@@ -54,6 +54,7 @@ public class Ball : MonoBehaviour {
 	private void DestroyBall()
 	{
 		FindObjectOfType<Player> ().DecrementBallCount ();
+		FindObjectOfType<Manager> ().LivesDown ();
 		Destroy(gameObject);
 	}
 

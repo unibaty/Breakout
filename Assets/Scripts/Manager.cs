@@ -3,14 +3,18 @@ using System.Collections;
 
 public class Manager : MonoBehaviour {
 //	public GameObject player;
-	private GameObject title;
+	GameObject title;
 	enum Scenes {Playing, Title};
-	private int scene = (int)Scenes.Title;
-	private int score = 0;
+	int scene = (int)Scenes.Title;
+	int score = 0;
 
+	public int DefaultLives = 3;
+	public int Lives;
 	// Use this for initialization
 	void Start () {
 		title = GameObject.Find ("Title");
+		Lives = DefaultLives;
+		FindObjectOfType<Lives>().SetText(Lives);
 	}
 
 	// Update is called once per frame
@@ -54,5 +58,19 @@ public class Manager : MonoBehaviour {
 	{
 		score ++;
 		FindObjectOfType<Score> ().SetScore(score);
+	}
+
+	public void LivesDown()
+	{
+		if(Lives <= 0){
+			return;
+		}
+		Lives --;
+		FindObjectOfType<Lives>().SetText(Lives);
+	}
+
+	public void ResetLives()
+	{
+		Lives = DefaultLives;
 	}
 }

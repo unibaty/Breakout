@@ -13,7 +13,6 @@ public class Player : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		defalutSpeed = speed;
-//		CreateBall ();
 	}
 	
 	// Update is called once per frame
