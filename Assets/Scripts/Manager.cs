@@ -8,13 +8,28 @@ public class Manager : MonoBehaviour {
 	int scene = (int)Scenes.Title;
 	int score = 0;
 
+	
 	public int DefaultLives = 3;
 	public int Lives;
+
+	public IEnumerator RoutineMethod;
+
+	public GameObject Stage;
+
+	//
+
+	
 	// Use this for initialization
 	void Start () {
 		title = GameObject.Find ("Title");
 		Lives = DefaultLives;
 		FindObjectOfType<Lives>().SetText(Lives);
+		var label_Lives = FindObjectOfType<Lives>();
+		Debug.Log(label_Lives);
+		label_Lives.SetText(Lives);
+
+		//set routin method..
+		RoutineMethod = RoutineEvents();
 	}
 
 	// Update is called once per frame
@@ -23,7 +38,14 @@ public class Manager : MonoBehaviour {
 		if (Input.GetKeyDown(KeyCode.Return))
 		{
 			GameStart();
+
+			//set routin method..
+			RoutineMethod = RoutineEvents();
+			//start coroutine
+			StartCoroutine (RoutineMethod);
+
 		}
+
 	}
 
 	public void GameStart ()
@@ -36,6 +58,16 @@ public class Manager : MonoBehaviour {
 		FindObjectOfType<Player> ().CreateBall();
 		HideTitle();
 
+	}
+
+	IEnumerator RoutineEvents()
+	{
+		while (true){
+			yield return new WaitForSeconds (5.0f);
+			Debug.Log ("routine Event");
+
+			Stage.GetComponent<Stage>().StageRoutinMethod();
+		}
 	}
 
 	public void GameOver ()
@@ -67,6 +99,15 @@ public class Manager : MonoBehaviour {
 		}
 		Lives --;
 		FindObjectOfType<Lives>().SetText(Lives);
+	}
+
+	public void MethodsOnBallIsDead(){
+		Debug.Log ("CALL MethodsOnBallIsDead");
+		LivesDown();
+		StopCoroutine (RoutineMethod);
+
+		// ball_track all remove
+		FindObjectOfType<BallTrack>().DestroyOwn();
 	}
 
 	public void ResetLives()
