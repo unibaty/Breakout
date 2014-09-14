@@ -7,7 +7,6 @@ public class Manager : MonoBehaviour {
 	enum Scenes {Playing, Title};
 	int scene = (int)Scenes.Title;
 	int score = 0;
-
 	
 	public int DefaultLives = 3;
 	public int Lives;
@@ -23,7 +22,6 @@ public class Manager : MonoBehaviour {
 	void Start () {
 		title = GameObject.Find ("Title");
 		Lives = DefaultLives;
-		FindObjectOfType<Lives>().SetText(Lives);
 		var label_Lives = FindObjectOfType<Lives>();
 		Debug.Log(label_Lives);
 		label_Lives.SetText(Lives);
