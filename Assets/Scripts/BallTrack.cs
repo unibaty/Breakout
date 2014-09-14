@@ -13,7 +13,7 @@ public class BallTrack : MonoBehaviour {
 		
 	}
 
-	void DestroyOwn(){
+	public void DestroyOwn(){
 		Destroy(gameObject);
 	}
 }
